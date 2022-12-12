@@ -40,12 +40,10 @@ class BankAccount {
   }
 
   withdraw(amount) {
-    if (typeof amount !== 'number') {
-      throw 'Error - amount must be a valid number.'
-    } else {
-      this.balance -= amount;
-      this.setStatement('debit', amount.toFixed(2));
-    }
+    this.balance -= amount;
+    const transaction = new Transaction;
+    transaction.processTransaction(amount);
+    this.setStatement('debit', transaction.amount.toFixed(2));
   }
 
   getHistory() {
