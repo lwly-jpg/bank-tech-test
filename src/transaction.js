@@ -8,13 +8,17 @@ class Transaction {
     return this.date;
   }
 
+  getAmount() {
+    return this.amount;
+  }
+
   setDate() {
     const date = new Date(Date.now());
     const todayGB = date.toLocaleDateString("en-GB");
     return todayGB;
   }
 
-  deposit(amount) {
+  processTransaction(amount) {
     if (typeof amount !== 'number') {
       throw 'Error - amount must be a valid number.'
     } else {
@@ -23,9 +27,6 @@ class Transaction {
     }
   }
 
-  getAmount() {
-    return this.amount;
-  }
 }
 
 module.exports = Transaction;

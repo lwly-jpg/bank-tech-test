@@ -12,18 +12,18 @@ describe('Transaction', () => {
     );
   });
 
-  it('sets the amount of a deposit transaction', () => {
-    transaction.deposit(20);
+  it('sets the amount of a transaction', () => {
+    transaction.processTransaction(20);
     expect(transaction.getAmount()).toEqual(20);
   });
 
-  it('sets the date of a deposit transaction', () => {
-    transaction.deposit(20);
+  it('sets the date of a transaction', () => {
+    transaction.processTransaction(20);
     expect(transaction.getDate()).toEqual('25/12/2022')
   })
 
-  it('throws error if deposit is not integer', () => {
-    expect(() => transaction.deposit('reject me')).toThrow('Error - amount must be a valid number.');
+  it('throws error if transaction amount is not integer', () => {
+    expect(() => transaction.processTransaction('reject me')).toThrow('Error - amount must be a valid number.');
   });
 
 
