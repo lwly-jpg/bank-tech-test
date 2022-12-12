@@ -3,6 +3,7 @@ class BankAccount {
     this.balance = 0;
     this.transactions = [];
     this.history = [];
+    this.statement = [];
   }
 
   getBalance() {
@@ -22,11 +23,13 @@ class BankAccount {
   deposit(amount) {
     this.balance += amount;
     this.updateTransactions();
+    this.statement.push({date: this.getDate(), credit: amount.toFixed(2), debit: "||", balance: this.balance.toFixed(2)})
   }
 
   withdraw(amount) {
     this.balance -= amount;
     this.updateTransactions();
+    this.statement.push({date: this.getDate(), credit: "||", debit: amount.toFixed(2), balance: this.balance.toFixed(2)})
   }
 
   getHistory() {
@@ -36,6 +39,16 @@ class BankAccount {
 
     return this.history;
   }
+
+  printStatement() {
+    console.log('date || credit || debit || balance');
+    this.statement.forEach((transaction) => {
+      console.log(`${transaction.date} || ${transaction.credit} || ${transaction.debit} || ${transaction.balance}`)
+    })
+
+  }
+
+
 }
 
 module.exports = BankAccount;
