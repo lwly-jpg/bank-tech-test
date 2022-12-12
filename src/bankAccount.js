@@ -11,13 +11,7 @@ class BankAccount {
     return this.balance;
   }
 
-  getDate() {
-    const date = new Date(Date.now());
-    const todayGB = date.toLocaleDateString("en-GB");
-    return todayGB;
-  }
-
-  setStatement(type, amount) {
+  setStatement(type, date, amount) {
     let creditAmount = null;
     let debitAmount = null;
 
@@ -29,21 +23,21 @@ class BankAccount {
       debitAmount = amount;
     }
 
-    this.statement.push({date: this.getDate(), credit: creditAmount, debit: debitAmount, balance: this.balance.toFixed(2)});
+    this.statement.push({date: date, credit: creditAmount, debit: debitAmount, balance: this.balance.toFixed(2)});
   }
 
   deposit(amount) {
     this.balance += amount;
     const transaction = new Transaction;
     transaction.processTransaction(amount);
-    this.setStatement('credit', transaction.amount.toFixed(2));
+    this.setStatement('credit', transaction.date, transaction.amount.toFixed(2));
   }
 
   withdraw(amount) {
     this.balance -= amount;
     const transaction = new Transaction;
     transaction.processTransaction(amount);
-    this.setStatement('debit', transaction.amount.toFixed(2));
+    this.setStatement('debit', transaction.date, transaction.amount.toFixed(2));
   }
 
   getHistory() {
