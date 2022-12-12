@@ -34,6 +34,10 @@ describe('BankAccount', () => {
       expect(() => myAccount.deposit('reject me')).toThrow('Error - amount must be a valid number.');
     });
 
+    it('throws error if withdrawal is not integer', () => {
+      expect(() => myAccount.withdraw('reject me')).toThrow('Error - amount must be a valid number.');
+    });
+
   });
 
   it('returns date with balance when account history is requested', () => {

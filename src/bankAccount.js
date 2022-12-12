@@ -21,7 +21,6 @@ class BankAccount {
   }
 
   deposit(amount) {
-    console.log(typeof amount)
     if (typeof amount !== 'number') {
       throw 'Error - amount must be a valid number.'
     } else {
@@ -32,9 +31,14 @@ class BankAccount {
   }
 
   withdraw(amount) {
-    this.balance -= amount;
-    this.updateTransactions();
-    this.statement.push({date: this.getDate(), credit: "||", debit: amount.toFixed(2), balance: this.balance.toFixed(2)})
+    if (typeof amount !== 'number') {
+      throw 'Error - amount must be a valid number.'
+    } else {
+      this.balance -= amount;
+      this.updateTransactions();
+      this.statement.push({date: this.getDate(), credit: "||", debit: amount.toFixed(2), balance: this.balance.toFixed(2)});
+    }
+    
   }
 
   getHistory() {
