@@ -10,5 +10,12 @@ describe('BankAccount', () => {
     const myAccount = new BankAccount;
     myAccount.deposit(20);
     expect(myAccount.getBalance()).toEqual(20);
+  });
+
+  it('decreases balance when funds are withdrawn', () => {
+    const myAccount = new BankAccount;
+    myAccount.deposit(20);
+    myAccount.withdraw(10);
+    expect(myAccount.getBalance()).toEqual(10);
   })
 });
