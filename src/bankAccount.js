@@ -1,8 +1,7 @@
 class BankAccount {
   constructor() {
     this.balance = 0;
-    this.transactions = [];
-    this.history = [];
+    this.balanceHistory = [];
     this.statement = [];
   }
 
@@ -16,8 +15,19 @@ class BankAccount {
     return todayGB;
   }
 
-  updateTransactions() {
-    this.transactions.push({date: this.getDate(), balance: this.balance.toFixed(2)});
+  setStatement(type, amount) {
+    let creditAmount = null;
+    let debitAmount = null;
+
+    if (type === 'credit') {
+      creditAmount = amount;
+      debitAmount = "||"
+    } else if (type === 'debit') {
+      creditAmount = "||";
+      debitAmount = amount;
+    }
+
+    this.statement.push({date: this.getDate(), credit: creditAmount, debit: debitAmount, balance: this.balance.toFixed(2)});
   }
 
   deposit(amount) {
@@ -25,8 +35,7 @@ class BankAccount {
       throw 'Error - amount must be a valid number.'
     } else {
       this.balance += amount;
-      this.updateTransactions();
-      this.statement.push({date: this.getDate(), credit: amount.toFixed(2), debit: "||", balance: this.balance.toFixed(2)});
+      this.setStatement('credit', amount.toFixed(2));
     }
   }
 
@@ -35,18 +44,16 @@ class BankAccount {
       throw 'Error - amount must be a valid number.'
     } else {
       this.balance -= amount;
-      this.updateTransactions();
-      this.statement.push({date: this.getDate(), credit: "||", debit: amount.toFixed(2), balance: this.balance.toFixed(2)});
+      this.setStatement('debit', amount.toFixed(2));
     }
-    
   }
 
   getHistory() {
-    this.transactions.forEach((transaction) => {
-      this.history.push(`${transaction.date} ${transaction.balance}`)
+    this.statement.forEach((transaction) => {
+      this.balanceHistory.push(`${transaction.date} ${transaction.balance}`)
     });
 
-    return this.history;
+    return this.balanceHistory;
   }
 
   printStatement() {
