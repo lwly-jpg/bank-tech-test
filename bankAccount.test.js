@@ -53,5 +53,11 @@ describe('BankAccount', () => {
     expect(consoleSpy).toHaveBeenCalledWith('25/12/2022 || 5.00 || || || 35.00');
   });
 
+  it('prints out statement with message if there are no transactions', () => {
+    myAccount.printStatement();
+    expect(consoleSpy).toHaveBeenCalledWith('date || credit || debit || balance');
+    expect(consoleSpy).toHaveBeenCalledWith('No transactions in account history.');
+  });
+
 
 });
