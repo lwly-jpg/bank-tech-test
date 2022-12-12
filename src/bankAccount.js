@@ -9,18 +9,20 @@ class BankAccount {
     return this.balance;
   }
 
-  deposit(amount) {
+  getDate() {
     const date = new Date();
     const todayGB = date.toLocaleDateString("en-GB");
+    return todayGB;
+  }
+
+  deposit(amount) {
     this.balance += amount;
-    this.transactions.push({balance: this.balance.toFixed(2), date: todayGB });
+    this.transactions.push({balance: this.balance.toFixed(2), date: this.getDate() });
   }
 
   withdraw(amount) {
-    const date = new Date();
-    const todayGB = date.toLocaleDateString("en-GB");
     this.balance -= amount;
-    this.transactions.push({balance: this.balance.toFixed(2), date: todayGB });
+    this.transactions.push({balance: this.balance.toFixed(2), date: this.getDate() });
   }
 
   getHistory() {
