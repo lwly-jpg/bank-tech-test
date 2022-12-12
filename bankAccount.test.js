@@ -18,15 +18,22 @@ describe('BankAccount', () => {
     expect(myAccount.getBalance()).toEqual(0);
   });
 
-  it('increases balance when funds are deposited', () => {
-    myAccount.deposit(20);
-    expect(myAccount.getBalance()).toEqual(20);
-  });
+  describe('when a transaction is attempted', () => {
+    it('increases balance when funds are deposited', () => {
+      myAccount.deposit(20);
+      expect(myAccount.getBalance()).toEqual(20);
+    });
+  
+    it('decreases balance when funds are withdrawn', () => {
+      myAccount.deposit(20);
+      myAccount.withdraw(10);
+      expect(myAccount.getBalance()).toEqual(10);
+    });
 
-  it('decreases balance when funds are withdrawn', () => {
-    myAccount.deposit(20);
-    myAccount.withdraw(10);
-    expect(myAccount.getBalance()).toEqual(10);
+    it('throws error if deposit is not integer', () => {
+      expect(() => myAccount.deposit('reject me')).toThrow('Error - amount must be a valid number.');
+    });
+
   });
 
   it('returns date with balance when account history is requested', () => {

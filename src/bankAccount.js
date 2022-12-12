@@ -21,9 +21,14 @@ class BankAccount {
   }
 
   deposit(amount) {
-    this.balance += amount;
-    this.updateTransactions();
-    this.statement.push({date: this.getDate(), credit: amount.toFixed(2), debit: "||", balance: this.balance.toFixed(2)})
+    console.log(typeof amount)
+    if (typeof amount !== 'number') {
+      throw 'Error - amount must be a valid number.'
+    } else {
+      this.balance += amount;
+      this.updateTransactions();
+      this.statement.push({date: this.getDate(), credit: amount.toFixed(2), debit: "||", balance: this.balance.toFixed(2)});
+    }
   }
 
   withdraw(amount) {
