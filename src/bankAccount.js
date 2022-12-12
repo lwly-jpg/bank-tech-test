@@ -15,14 +15,18 @@ class BankAccount {
     return todayGB;
   }
 
+  updateTransactions() {
+    this.transactions.push({balance: this.balance.toFixed(2), date: this.getDate() });
+  }
+
   deposit(amount) {
     this.balance += amount;
-    this.transactions.push({balance: this.balance.toFixed(2), date: this.getDate() });
+    this.updateTransactions();
   }
 
   withdraw(amount) {
     this.balance -= amount;
-    this.transactions.push({balance: this.balance.toFixed(2), date: this.getDate() });
+    this.updateTransactions();
   }
 
   getHistory() {
