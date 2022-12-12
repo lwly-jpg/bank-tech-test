@@ -1,6 +1,7 @@
 class BankAccount {
   constructor() {
     this.balance = 0;
+    this.transactions = [];
     this.history = [];
   }
 
@@ -12,15 +13,22 @@ class BankAccount {
     const date = new Date();
     const todayGB = date.toLocaleDateString("en-GB");
     this.balance += amount;
-    this.history.push({amount: "20.00", date: todayGB });
+    this.transactions.push({balance: this.balance.toFixed(2), date: todayGB });
   }
 
   withdraw(amount) {
+    const date = new Date();
+    const todayGB = date.toLocaleDateString("en-GB");
     this.balance -= amount;
+    this.transactions.push({balance: this.balance.toFixed(2), date: todayGB });
   }
 
   getHistory() {
-    return `${this.history[0].date} ${this.history[0].amount}`;
+    this.transactions.forEach((transaction) => {
+      this.history.push(`${transaction.date} ${transaction.balance}`)
+    });
+
+    return this.history;
   }
 }
 
