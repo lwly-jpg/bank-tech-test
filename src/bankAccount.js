@@ -1,3 +1,5 @@
+const Transaction = require('./transaction');
+
 class BankAccount {
   constructor() {
     this.balance = 0;
@@ -31,12 +33,10 @@ class BankAccount {
   }
 
   deposit(amount) {
-    if (typeof amount !== 'number') {
-      throw 'Error - amount must be a valid number.'
-    } else {
-      this.balance += amount;
-      this.setStatement('credit', amount.toFixed(2));
-    }
+    this.balance += amount;
+    const transaction = new Transaction;
+    transaction.processTransaction(amount);
+    this.setStatement('credit', transaction.amount.toFixed(2));
   }
 
   withdraw(amount) {
