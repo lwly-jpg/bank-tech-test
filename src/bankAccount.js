@@ -11,13 +11,13 @@ class BankAccount {
   }
 
   getDate() {
-    const date = new Date();
+    const date = new Date(Date.now());
     const todayGB = date.toLocaleDateString("en-GB");
     return todayGB;
   }
 
   updateTransactions() {
-    this.transactions.push({balance: this.balance.toFixed(2), date: this.getDate() });
+    this.transactions.push({date: this.getDate(), balance: this.balance.toFixed(2)});
   }
 
   deposit(amount) {
@@ -42,9 +42,14 @@ class BankAccount {
 
   printStatement() {
     console.log('date || credit || debit || balance');
-    this.statement.forEach((transaction) => {
-      console.log(`${transaction.date} || ${transaction.credit} || ${transaction.debit} || ${transaction.balance}`)
-    })
+    
+    if (this.statement.length === 0) {
+      console.log('No transactions in account history.');
+    } else {
+      this.statement.forEach((transaction) => {
+        console.log(`${transaction.date} || ${transaction.credit} || ${transaction.debit} || ${transaction.balance}`)
+      });
+    }
 
   }
 
