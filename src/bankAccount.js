@@ -10,7 +10,7 @@ class BankAccount {
 
   // returns balance as unformatted number
   getBalance() {
-    return this.balance;
+    return `Your balance is: ${this.balance.toFixed(2)}`;
   }
 
   // checks amount type, generates date and adds transaction to statement

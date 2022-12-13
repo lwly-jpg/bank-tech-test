@@ -15,19 +15,21 @@ describe('BankAccount', () => {
   });
 
   it('constructs with an empty balance of 0', () => {
-    expect(myAccount.getBalance()).toEqual(0);
+    expect(myAccount.balance).toEqual(0);
   });
 
   describe('when a transaction is attempted', () => {
     it('increases balance when funds are deposited', () => {
       myAccount.deposit(20);
-      expect(myAccount.getBalance()).toEqual(20);
+      expect(myAccount.balance).toEqual(20);
+      expect(myAccount.getBalance()).toEqual('Your balance is: 20.00');
     });
   
     it('decreases balance when funds are withdrawn', () => {
       myAccount.deposit(20);
       myAccount.withdraw(10);
-      expect(myAccount.getBalance()).toEqual(10);
+      expect(myAccount.balance).toEqual(10);
+      expect(myAccount.getBalance()).toEqual('Your balance is: 10.00');
     });
 
     it('throws error if deposit is not integer', () => {
