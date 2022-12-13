@@ -26,6 +26,10 @@ describe('Statement', () => {
     expect(statement.transactions[2].credit).toEqual("||");
   });
 
+  it('throws error when transaction type is invalid', () => {
+    expect(() => statement.addTransaction('cedit', '20/12/2022', 50, 75)).toThrow('Error - invalid transaction type.');
+  });
+
   it('returns message if no transactions to format', () => {
     expect(statement.formatTransactions()).toEqual('No transactions in account history.')
   });

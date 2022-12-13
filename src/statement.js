@@ -16,6 +16,8 @@ class Statement {
       this.balance -= amount;
       creditAmount = "||";
       debitAmount = amount.toFixed(2);
+    } else {
+      throw 'Error - invalid transaction type.';
     }
 
     this.transactions.push({date: date, credit: creditAmount, debit: debitAmount, balance: balance.toFixed(2)});
