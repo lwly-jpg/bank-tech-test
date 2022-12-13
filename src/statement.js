@@ -31,18 +31,20 @@ class Statement {
       return 'No transactions in account history.';
     } else {
         this.transactions.forEach(transaction => {
-          if (transaction.credit === 0) {
-            transaction.credit = "||"
-          }
-
-          if (transaction.debit === 0) {
-            transaction.debit = "||"
-          }
-          
+          transaction.credit = this.formatZeros(transaction.credit);
+          transaction.debit = this.formatZeros(transaction.debit);
           this.formattedStatement.push(`${transaction.date} || ${transaction.credit} || ${transaction.debit} || ${transaction.balance}`)
         });
       return this.formattedStatement.join("\n");
     }
+  }
+
+  // converts 0 credit or debit amounts to "||"
+  formatZeros(amount) {
+    if (amount === 0) {
+      amount = "||"
+    }
+    return amount;
   }
 
 
