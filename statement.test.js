@@ -4,12 +4,11 @@ describe('Statement', () => {
   let statement;
 
   beforeEach(() => {
-    const balance = 0;
-    statement = new Statement(balance);
+    statement = new Statement;
   });
 
   it('adds a transaction to the statement', () => {
-    statement.addTransaction('credit', '21/12/2022', 20);
+    statement.addTransaction('credit', '21/12/2022', 20, 20);
     expect(statement.formatStatement()).toEqual(['21/12/2022 || 20.00 || || || 20.00']);
 
   });

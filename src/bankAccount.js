@@ -1,47 +1,35 @@
 const Transaction = require('./transaction');
+const Statement = require('./statement');
 
 class BankAccount {
   constructor() {
     this.balance = 0;
     this.balanceHistory = [];
-    this.statement = [];
+    this.statement = new Statement;
   }
 
   getBalance() {
     return this.balance;
   }
 
-  setStatement(type, date, amount) {
-    let creditAmount = null;
-    let debitAmount = null;
-
-    if (type === 'credit') {
-      creditAmount = amount;
-      debitAmount = "||"
-    } else if (type === 'debit') {
-      creditAmount = "||";
-      debitAmount = amount;
-    }
-
-    this.statement.push({date: date, credit: creditAmount, debit: debitAmount, balance: this.balance.toFixed(2)});
-  }
-
   deposit(amount) {
     this.balance += amount;
     const transaction = new Transaction;
     transaction.processTransaction(amount);
-    this.setStatement('credit', transaction.date, transaction.amount.toFixed(2));
+    this.statement.addTransaction('credit', transaction.date, transaction.amount, this.balance);
+    console.log(this.balance)
+    // this.setStatement('credit', transaction.date, transaction.amount.toFixed(2));
   }
 
   withdraw(amount) {
     this.balance -= amount;
     const transaction = new Transaction;
     transaction.processTransaction(amount);
-    this.setStatement('debit', transaction.date, transaction.amount.toFixed(2));
+    this.statement.addTransaction('debit', transaction.date, transaction.amount, this.balance);
   }
 
   getHistory() {
-    this.statement.forEach((transaction) => {
+    this.statement.transactions.forEach((transaction) => {
       this.balanceHistory.push(`${transaction.date} ${transaction.balance}`)
     });
 
@@ -51,10 +39,10 @@ class BankAccount {
   printStatement() {
     console.log('date || credit || debit || balance');
     
-    if (this.statement.length === 0) {
+    if (this.statement.transactions.length === 0) {
       console.log('No transactions in account history.');
     } else {
-      this.statement.forEach((transaction) => {
+      this.statement.transactions.forEach((transaction) => {
         console.log(`${transaction.date} || ${transaction.credit} || ${transaction.debit} || ${transaction.balance}`)
       });
     }
