@@ -58,7 +58,7 @@ describe('BankAccount', () => {
     myAccount.withdraw(20);
     myAccount.deposit(5);
     myAccount.printStatement();
-    const result = "date || credit || debit || balance\n25/12/2022 || 50.00 || || || 50.00\n25/12/2022 || || || 20.00 || 30.00\n25/12/2022 || 5.00 || || || 35.00\n25/12/2022 || 50.00 || || || 50.00\n25/12/2022 || || || 20.00 || 30.00\n25/12/2022 || 5.00 || || || 35.00\n25/12/2022 || 50.00 || || || 50.00\n25/12/2022 || || || 20.00 || 30.00\n25/12/2022 || 5.00 || || || 35.00"
+    const result = 'date || credit || debit || balance\n25/12/2022 || 50.00 || || || 50.00\n25/12/2022 || || || 20.00 || 30.00\n25/12/2022 || 5.00 || || || 35.00'
     expect(consoleSpy).toHaveBeenCalledWith(result);
   });
 

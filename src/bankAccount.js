@@ -35,7 +35,7 @@ class BankAccount {
   }
 
   printStatement() {
-    console.log(this.statement.formatStatement())
+    console.log(this.statement.formatTransactions())
   }
 
 

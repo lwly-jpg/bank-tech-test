@@ -22,15 +22,13 @@ class Statement {
 
   }
 
-  formatStatement() {
+  formatTransactions() {
     if (this.transactions.length === 0) {
       return 'No transactions in account history.';
     } else {
-      for (let i = 0; i < this.transactions.length; i++) {
         this.transactions.forEach(transaction => {
           this.formattedStatement.push(`${transaction.date} || ${transaction.credit} || ${transaction.debit} || ${transaction.balance}`)
-        })
-      }
+        });
       return this.formattedStatement.join("\n");
     }
   }
