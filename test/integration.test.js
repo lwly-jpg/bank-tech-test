@@ -14,6 +14,25 @@ describe('BankAccount', () => {
 
   describe('when a transaction is attempted', () => {
 
+    it('adds single transaction to statement', () => {
+      myAccount.deposit(50);
+      expect(myAccount.statement.transactions[0].date).toEqual('25/12/2022');
+      expect(myAccount.statement.transactions[0].credit).toEqual('50.00');
+      expect(myAccount.statement.transactions[0].debit).toEqual(0);
+      expect(myAccount.statement.transactions[0].balance).toEqual('50.00');
+    });
+
+    it('adds multiple transactions to statement', () => {
+      myAccount.deposit(50);
+      myAccount.deposit(25);
+      myAccount.withdraw(50);
+      expect(myAccount.statement.transactions[0].date).toEqual('25/12/2022');
+      expect(myAccount.statement.transactions[1].credit).toEqual('25.00');
+      expect(myAccount.statement.transactions[2].debit).toEqual("50.00");
+      expect(myAccount.statement.transactions[1].balance).toEqual('75.00');
+      expect(myAccount.statement.transactions[2].credit).toEqual(0);
+    });
+
     it('throws error if deposit is not integer', () => {
       expect(() => myAccount.deposit('reject me')).toThrow('Error - amount must be a valid number.');
     });
