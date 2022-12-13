@@ -34,6 +34,12 @@ describe('BankAccount', () => {
       expect(myAccount.withdraw(20)).toEqual('Insuficient funds. Balance: 0.00');
     });
 
+    it('allows withdrawal if overdraft exists, up to overdraft limit', () => {
+      myAccount.overdraft = 200;
+      myAccount.withdraw(190)
+      expect(myAccount.getBalance()).toEqual('Your balance is: -190.00 (overdraft)');
+    });
+
     it('throws error if deposit is not integer', () => {
       expect(() => myAccount.deposit('reject me')).toThrow('Error - amount must be a valid number.');
     });

@@ -4,13 +4,17 @@ const Statement = require('./statement');
 class BankAccount {
   constructor() {
     this.balance = 0;
-    this.balanceHistory = [];
+    this.overdraft = 0;
     this.statement = new Statement;
   }
 
   // returns balance as unformatted number
   getBalance() {
-    return `Your balance is: ${this.balance.toFixed(2)}`;
+    if (this.balance < 0) {
+      return `Your balance is: ${this.balance.toFixed(2)} (overdraft)`;
+    } else {
+      return `Your balance is: ${this.balance.toFixed(2)}`;
+    }
   }
 
   // checks amount type, generates date and adds transaction to statement
@@ -23,7 +27,7 @@ class BankAccount {
 
   // checks amount type, generates date and adds transaction to statement
   withdraw(amount) {
-    if (amount > this.balance) {
+    if (amount > this.balance + this.overdraft) {
       return `Insuficient funds. Balance: ${this.balance.toFixed(2)}`
     } else {
       const transaction = new Transaction;
@@ -33,7 +37,7 @@ class BankAccount {
     }
   }
 
-  // prints formatted statement of transactions to the console
+  // returns formatted statement of transactions
   printStatement() {
     return this.statement.formatTransactions();
   }
