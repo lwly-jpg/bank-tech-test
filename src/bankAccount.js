@@ -28,7 +28,11 @@ class BankAccount {
   // checks amount type, generates date and adds transaction to statement
   withdraw(amount) {
     if (amount > this.balance + this.overdraft) {
-      return `Insuficient funds. Balance: ${this.balance.toFixed(2)}`
+      if (this.overdraft === 0) {
+        return `Insuficient funds. Balance: ${this.balance.toFixed(2)}`
+      } else {
+        return `Insuficient funds. Balance: ${this.balance.toFixed(2)} (+${this.overdraft.toFixed(2)} overdraft limit)`
+      }
     } else {
       const transaction = new Transaction;
       transaction.processTransaction(amount);
