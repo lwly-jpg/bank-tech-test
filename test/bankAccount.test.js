@@ -45,14 +45,6 @@ describe('BankAccount', () => {
       expect(myAccount.withdraw(210)).toEqual('Insuficient funds. Balance: 0.00 (+200.00 overdraft limit)');
     });
 
-    it('throws error if deposit is not integer', () => {
-      expect(() => myAccount.deposit('reject me')).toThrow('Error - amount must be a valid number.');
-    });
-
-    it('throws error if withdrawal is not integer', () => {
-      expect(() => myAccount.withdraw('reject me')).toThrow('Error - amount must be a valid number.');
-    });
-
   });
 
   it('prints out formatted statement to console', () => {
@@ -60,10 +52,16 @@ describe('BankAccount', () => {
     myAccount.withdraw(20);
     myAccount.deposit(5);
     const result = 'date || credit || debit || balance\n25/12/2022 || 50.00 || || || 50.00\n25/12/2022 || || || 20.00 || 30.00\n25/12/2022 || 5.00 || || || 35.00'
+    myAccount.statement = {
+      formatTransactions: () => result
+    }
     expect(myAccount.printStatement()).toEqual(result);
   });
 
   it('prints out statement with message if there are no transactions', () => {
+    myAccount.statement = {
+      formatTransactions: () => 'No transactions in account history.'
+    }
     expect(myAccount.printStatement()).toEqual('No transactions in account history.');
   });
 

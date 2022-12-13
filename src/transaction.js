@@ -4,21 +4,14 @@ class Transaction {
     this.date = null;
   }
 
-// returns date of transaction
-  getDate() {
-    return this.date;
-  }
-
   // returns amount of transaction as unformatted number
   getAmount() {
     return this.amount;
   }
 
-  // returns current date in DD-MM-YYYY (en-GB) format
-  setDate() {
-    const date = new Date(Date.now());
-    const todayGB = date.toLocaleDateString("en-GB");
-    return todayGB;
+  // returns date of transaction
+  getDate() {
+    return this.date;
   }
 
   // if amount is a number, sets transaction amount and date
@@ -29,6 +22,13 @@ class Transaction {
       this.amount += amount;
       this.date = this.setDate();
     }
+  }
+  
+  // returns current date in DD-MM-YYYY (en-GB) format
+  setDate() {
+    const date = new Date(Date.now());
+    const todayGB = date.toLocaleDateString("en-GB");
+    return todayGB;
   }
 
 }
