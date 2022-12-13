@@ -11,7 +11,7 @@ describe('Statement', () => {
     statement.addTransaction('credit', '20/12/2022', 50, 75);
     expect(statement.transactions[0].date).toEqual('20/12/2022');
     expect(statement.transactions[0].credit).toEqual('50.00');
-    expect(statement.transactions[0].debit).toEqual("||");
+    expect(statement.transactions[0].debit).toEqual(0);
     expect(statement.transactions[0].balance).toEqual('75.00');
   });
 
@@ -23,7 +23,7 @@ describe('Statement', () => {
     expect(statement.transactions[1].credit).toEqual('25.00');
     expect(statement.transactions[2].debit).toEqual("50.00");
     expect(statement.transactions[1].balance).toEqual('100.00');
-    expect(statement.transactions[2].credit).toEqual("||");
+    expect(statement.transactions[2].credit).toEqual(0);
   });
 
   it('throws error when transaction type is invalid', () => {

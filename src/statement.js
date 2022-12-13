@@ -12,10 +12,10 @@ class Statement {
     if (type === 'credit') {
       this.balance += amount;
       creditAmount = amount.toFixed(2);
-      debitAmount = "||"
+      debitAmount = 0;
     } else if (type === 'debit') {
       this.balance -= amount;
-      creditAmount = "||";
+      creditAmount = 0;
       debitAmount = amount.toFixed(2);
     } else {
       throw 'Error - invalid transaction type.';
@@ -31,6 +31,14 @@ class Statement {
       return 'No transactions in account history.';
     } else {
         this.transactions.forEach(transaction => {
+          if (transaction.credit === 0) {
+            transaction.credit = "||"
+          }
+
+          if (transaction.debit === 0) {
+            transaction.debit = "||"
+          }
+          
           this.formattedStatement.push(`${transaction.date} || ${transaction.credit} || ${transaction.debit} || ${transaction.balance}`)
         });
       return this.formattedStatement.join("\n");
