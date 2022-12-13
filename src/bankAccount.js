@@ -13,25 +13,17 @@ class BankAccount {
   }
 
   deposit(amount) {
-    this.balance += amount;
     const transaction = new Transaction;
     transaction.processTransaction(amount);
+    this.balance += amount;
     this.statement.addTransaction('credit', transaction.date, transaction.amount, this.balance);
   }
 
   withdraw(amount) {
-    this.balance -= amount;
     const transaction = new Transaction;
     transaction.processTransaction(amount);
+    this.balance -= amount;
     this.statement.addTransaction('debit', transaction.date, transaction.amount, this.balance);
-  }
-
-  getHistory() {
-    this.statement.transactions.forEach((transaction) => {
-      this.balanceHistory.push(`${transaction.date} ${transaction.balance}`)
-    });
-
-    return this.balanceHistory;
   }
 
   printStatement() {

@@ -40,19 +40,6 @@ describe('BankAccount', () => {
 
   });
 
-  it('returns date with balance when account history is requested', () => {
-    myAccount.deposit(20);
-    expect(myAccount.getHistory()).toEqual(["25/12/2022 20.00"]);
-  });
-
-  it('returns account balance history with multiple transactions', () => {
-    myAccount.deposit(20);
-    myAccount.withdraw(10);
-    myAccount.deposit(5);
-    const result = ["25/12/2022 20.00", "25/12/2022 10.00", "25/12/2022 15.00"]
-    expect(myAccount.getHistory()).toEqual(result);
-  });
-
   it('prints out formatted statement to console', () => {
     myAccount.deposit(50);
     myAccount.withdraw(20);
