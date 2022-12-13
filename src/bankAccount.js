@@ -8,10 +8,12 @@ class BankAccount {
     this.statement = new Statement;
   }
 
+  // returns balance as unformatted number
   getBalance() {
     return this.balance;
   }
 
+  // checks amount type, generates date and adds transaction to statement
   deposit(amount) {
     const transaction = new Transaction;
     transaction.processTransaction(amount);
@@ -19,6 +21,7 @@ class BankAccount {
     this.statement.addTransaction('credit', transaction.date, transaction.amount, this.balance);
   }
 
+  // checks amount type, generates date and adds transaction to statement
   withdraw(amount) {
     const transaction = new Transaction;
     transaction.processTransaction(amount);
@@ -26,10 +29,10 @@ class BankAccount {
     this.statement.addTransaction('debit', transaction.date, transaction.amount, this.balance);
   }
 
+  // prints formatted statement of transactions to the console
   printStatement() {
     console.log(this.statement.formatTransactions())
   }
-
 
 }
 

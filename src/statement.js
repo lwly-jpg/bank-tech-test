@@ -4,6 +4,7 @@ class Statement {
     this.formattedStatement = ['date || credit || debit || balance'];
   }
 
+  // checks transaction type, formats amounts and adds to list of transactions
   addTransaction(type, date, amount, balance) {
     let creditAmount = null;
     let debitAmount = null;
@@ -24,6 +25,7 @@ class Statement {
 
   }
 
+  // formats transactions for statement printing
   formatTransactions() {
     if (this.transactions.length === 0) {
       return 'No transactions in account history.';
