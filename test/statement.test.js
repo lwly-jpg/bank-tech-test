@@ -1,4 +1,4 @@
-const Statement = require('./src/statement');
+const Statement = require('../src/statement');
 
 describe('Statement', () => {
   let statement;
