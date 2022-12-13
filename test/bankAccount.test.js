@@ -2,11 +2,9 @@ const BankAccount = require('../src/bankAccount');
 
 describe('BankAccount', () => {
   let myAccount;
-  let consoleSpy;
 
   beforeEach(() => {
     myAccount = new BankAccount;
-    consoleSpy = jest.spyOn(console, 'log');
     jest
     .spyOn(global.Date, 'now')
     .mockImplementation(() =>
@@ -50,14 +48,12 @@ describe('BankAccount', () => {
     myAccount.deposit(50);
     myAccount.withdraw(20);
     myAccount.deposit(5);
-    myAccount.printStatement();
     const result = 'date || credit || debit || balance\n25/12/2022 || 50.00 || || || 50.00\n25/12/2022 || || || 20.00 || 30.00\n25/12/2022 || 5.00 || || || 35.00'
-    expect(consoleSpy).toHaveBeenCalledWith(result);
+    expect(myAccount.printStatement()).toEqual(result);
   });
 
   it('prints out statement with message if there are no transactions', () => {
-    myAccount.printStatement();
-    expect(consoleSpy).toHaveBeenCalledWith('No transactions in account history.');
+    expect(myAccount.printStatement()).toEqual('No transactions in account history.');
   });
 
 
