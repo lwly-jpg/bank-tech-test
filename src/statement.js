@@ -1,7 +1,7 @@
 class Statement {
   constructor() {
     this.transactions = [];
-    this.formattedStatement = [];
+    this.formattedStatement = ['date || credit || debit || balance'];
   }
 
   addTransaction(type, date, amount, balance) {
@@ -31,9 +31,8 @@ class Statement {
           this.formattedStatement.push(`${transaction.date} || ${transaction.credit} || ${transaction.debit} || ${transaction.balance}`)
         })
       }
+      return this.formattedStatement.join("\n");
     }
-
-    return this.formattedStatement;
   }
 
 

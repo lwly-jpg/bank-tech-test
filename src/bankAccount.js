@@ -17,8 +17,6 @@ class BankAccount {
     const transaction = new Transaction;
     transaction.processTransaction(amount);
     this.statement.addTransaction('credit', transaction.date, transaction.amount, this.balance);
-    console.log(this.balance)
-    // this.setStatement('credit', transaction.date, transaction.amount.toFixed(2));
   }
 
   withdraw(amount) {
@@ -37,19 +35,11 @@ class BankAccount {
   }
 
   printStatement() {
-    console.log('date || credit || debit || balance');
-    
-    if (this.statement.transactions.length === 0) {
-      console.log('No transactions in account history.');
-    } else {
-      this.statement.transactions.forEach((transaction) => {
-        console.log(`${transaction.date} || ${transaction.credit} || ${transaction.debit} || ${transaction.balance}`)
-      });
-    }
-
+    console.log(this.statement.formatStatement())
   }
 
 
 }
 
 module.exports = BankAccount;
+
