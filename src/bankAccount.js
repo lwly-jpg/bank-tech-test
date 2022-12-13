@@ -23,10 +23,14 @@ class BankAccount {
 
   // checks amount type, generates date and adds transaction to statement
   withdraw(amount) {
-    const transaction = new Transaction;
-    transaction.processTransaction(amount);
-    this.balance -= amount;
-    this.statement.addTransaction('debit', transaction.date, transaction.amount, this.balance);
+    if (amount > this.balance) {
+      return `Insuficient funds. Balance: ${this.balance.toFixed(2)}`
+    } else {
+      const transaction = new Transaction;
+      transaction.processTransaction(amount);
+      this.balance -= amount;
+      this.statement.addTransaction('debit', transaction.date, transaction.amount, this.balance);
+    }
   }
 
   // prints formatted statement of transactions to the console

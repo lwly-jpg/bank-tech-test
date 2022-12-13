@@ -32,6 +32,10 @@ describe('BankAccount', () => {
       expect(myAccount.getBalance()).toEqual('Your balance is: 10.00');
     });
 
+    it('returns insufficient funds prompt if withdrawal is great than balance', () => {
+      expect(myAccount.withdraw(20)).toEqual('Insuficient funds. Balance: 0.00');
+    });
+
     it('throws error if deposit is not integer', () => {
       expect(() => myAccount.deposit('reject me')).toThrow('Error - amount must be a valid number.');
     });
