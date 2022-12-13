@@ -36,6 +36,22 @@ To address the specified requirements I:
   2. **Transaction** - creates individual transactions, consisting of a date and an amount;
   3. **Statement** - processes data to create transaction objects and formats them for statement printing;
 
+```
+Test coverage
+
+----------------|---------|----------|---------|---------|-------------------
+File            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+----------------|---------|----------|---------|---------|-------------------
+All files       |     100 |      100 |     100 |     100 |                   
+ bankAccount.js |     100 |      100 |     100 |     100 |                   
+ statement.js   |     100 |      100 |     100 |     100 |                   
+ transaction.js |     100 |      100 |     100 |     100 |                   
+----------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 3 passed, 3 total
+Tests:       15 passed, 15 total
+```
+
 ## How to run
 
 ### Installation
