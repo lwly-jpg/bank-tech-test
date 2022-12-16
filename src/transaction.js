@@ -15,11 +15,11 @@ class Transaction {
   }
 
   // if amount is a number, sets transaction amount and date
-  processTransaction(amount) {
+  setTransaction(amount) {
     if (typeof amount !== 'number') {
       throw 'Error - amount must be a valid number.'
     } else {
-      this.amount += amount;
+      this.amount = amount;
       this.date = this.setDate();
     }
   }
