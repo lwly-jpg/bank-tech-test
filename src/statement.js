@@ -1,7 +1,7 @@
 class Statement {
   constructor() {
     this.transactions = [];
-    this.formattedStatement = ['date || credit || debit || balance'];
+    this.formattedStatement = [];
   }
 
   // checks transaction type, formats amounts and adds to list of transactions
@@ -35,8 +35,15 @@ class Statement {
           transaction.debit = this.formatZeros(transaction.debit);
           this.formattedStatement.push(`${transaction.date} || ${transaction.credit} || ${transaction.debit} || ${transaction.balance}`)
         });
-      return this.formattedStatement.join("\n");
+      return this.formatStatement();
     }
+  }
+
+  // formats statement ready for printing
+  formatStatement() {
+    this.formattedStatement.reverse()
+    this.formattedStatement.unshift('date || credit || debit || balance')
+    return this.formattedStatement.join("\n");
   }
 
   // converts 0 credit or debit amounts to "||"

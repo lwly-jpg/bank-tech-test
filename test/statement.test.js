@@ -38,7 +38,7 @@ describe('Statement', () => {
     statement.addTransaction('credit', '20/12/2022', 50, 75);
     statement.addTransaction('credit', '22/12/2022', 25, 100);
     statement.addTransaction('debit', '23/12/2022', 50, 50);
-    const result = 'date || credit || debit || balance\n20/12/2022 || 50.00 || || || 75.00\n22/12/2022 || 25.00 || || || 100.00\n23/12/2022 || || || 50.00 || 50.00';
+    const result = 'date || credit || debit || balance\n23/12/2022 || || || 50.00 || 50.00\n22/12/2022 || 25.00 || || || 100.00\n20/12/2022 || 50.00 || || || 75.00';
     expect(statement.formatTransactions()).toEqual(result);
   });
 
