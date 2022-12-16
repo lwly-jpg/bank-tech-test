@@ -2,6 +2,7 @@ const Transaction = require('./transaction');
 const Statement = require('./statement');
 
 class BankAccount {
+  // initialises with balance of 0 and overdraft of 0
   constructor() {
     this.balance = 0;
     this.overdraft = 0;
@@ -25,6 +26,7 @@ class BankAccount {
     this.statement.addTransaction('credit', transaction.date, transaction.amount, this.balance);
   }
 
+  // checks balance and overdraft funds before processing
   // checks amount type, generates date and adds transaction to statement
   withdraw(amount) {
     if (amount > this.balance + this.overdraft) {
